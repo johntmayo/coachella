@@ -1,7 +1,7 @@
-#Weekend 1 Schedule
+# Weekend 1 Schedule
 (All times p.m. unless otherwise noted, listed in Pacific Daylight Time)
 
-##Friday, April 10, 2026
+## Friday, April 10, 2026
 Anyma (12:00, Coachella Stage)
 Sabrina Carpenter (9:05, Coachella Stage)
 The xx (7:00, Coachella Stage)
@@ -71,7 +71,7 @@ Pawsa (9:00, Quasar)
 Deep Dish (7:00, Quasar)
 Tiga (5:00, Quasar)
 
-##Saturday, April 11, 2026
+## Saturday, April 11, 2026
 Justin Bieber (11:25, Coachella Stage)
 The Strokes (9:00, Coachella Stage)
 Giveon (7:00, Coachella Stage)
@@ -133,7 +133,7 @@ David Guetta (9:00, Quasar)
 Afrojack x Shimza (7:00, Quasar)
 Joezi (5:00, Quasar)
 
-##Sunday, April 12, 2026
+## Sunday, April 12, 2026
 Karol G (9:55, Coachella Stage)
 Young Thug (7:50, Coachella Stage)
 Major Lazer (6:10, Coachella Stage)
