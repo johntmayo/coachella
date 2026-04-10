@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coachella 2025 — My Lineup</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #f5e6c8;
+    --rust: #c94f2a;
+    --teal: #1a6b6b;
+    --deep: #0d2b2b;
+    --gold: #e8b84b;
+    --sky: #2a9d8f;
+    --pale: #fdf6e9;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--deep);
+    color: var(--sand);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+  }
+
+  header {
+    background: linear-gradient(180deg, #0a1f1f 0%, var(--deep) 100%);
+    text-align: center;
+    padding: 40px 20px 30px;
+    border-bottom: 1px solid rgba(245,230,200,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(200,80,40,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(42,157,143,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .header-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 12vw, 100px);
+    letter-spacing: 6px;
+    color: var(--sand);
+    line-height: 0.9;
+    position: relative;
+  }
+
+  .logo span { color: var(--rust); }
+
+  .tagline {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,230,200,0.5);
+    margin-top: 8px;
+  }
+
+  .search-bar {
+    max-width: 480px;
+    margin: 28px auto 0;
+    position: relative;
+  }
+
+  .search-bar input {
+    width: 100%;
+    background: rgba(245,230,200,0.07);
+    border: 1px solid rgba(245,230,200,0.15);
+    border-radius: 40px;
+    padding: 12px 20px 12px 44px;
+    color: var(--sand);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .search-bar input::placeholder { color: rgba(245,230,200,0.35); }
+  .search-bar input:focus {
+    border-color: rgba(245,230,200,0.35);
+    background: rgba(245,230,200,0.1);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 16px; top: 50%;
+    transform: translateY(-50%);
+    color: rgba(245,230,200,0.4);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (max-width: 800px) {
+    .container { grid-template-columns: 1fr; }
+    .my-lineup { order: -1; }
+  }
+
+  .day-section { margin-bottom: 40px; }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .day-pill {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid currentColor;
+  }
+
+  .fri .day-pill { color: var(--gold); border-color: var(--gold); }
+  .sat .day-pill { color: var(--sky); border-color: var(--sky); }
+  .sun .day-pill { color: var(--rust); border-color: var(--rust); }
+
+  .day-headliner {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 5vw, 42px);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .fri .day-headliner { color: var(--gold); }
+  .sat .day-headliner { color: var(--sky); }
+  .sun .day-headliner { color: var(--rust); }
+
+  .day-date {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(245,230,200,0.4);
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  .artist-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .artist-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 6px;
+    background: rgba(245,230,200,0.06);
+    border: 1px solid rgba(245,230,200,0.12);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(245,230,200,0.75);
+  }
+
+  .artist-chip:hover {
+    background: rgba(245,230,200,0.12);
+    border-color: rgba(245,230,200,0.25);
+    color: var(--sand);
+    transform: translateY(-1px);
+  }
+
+  .artist-chip.selected {
+    background: rgba(245,230,200,0.12);
+    border-color: rgba(245,230,200,0.5);
+    color: var(--sand);
+    font-weight: 600;
+  }
+
+  .fri .artist-chip.selected { background: rgba(232,184,75,0.15); border-color: rgba(232,184,75,0.6); color: var(--gold); }
+  .sat .artist-chip.selected { background: rgba(42,157,143,0.15); border-color: rgba(42,157,143,0.6); color: var(--sky); }
+  .sun .artist-chip.selected { background: rgba(201,79,42,0.15); border-color: rgba(201,79,42,0.6); color: #e07a5f; }
+
+  .check-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+
+  .artist-chip.selected .check-dot { opacity: 1; }
+
+  .headliner-chip {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 1.5px;
+    padding: 8px 18px;
+  }
+
+  /* SIDEBAR */
+  .my-lineup {
+    background: rgba(245,230,200,0.04);
+    border: 1px solid rgba(245,230,200,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    position: sticky;
+    top: 20px;
+  }
+
+  .lineup-header {
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid rgba(245,230,200,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .lineup-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--sand);
+  }
+
+  .lineup-count {
+    background: var(--rust);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    min-width: 26px;
+    text-align: center;
+  }
+
+  .lineup-empty {
+    padding: 40px 22px;
+    text-align: center;
+    color: rgba(245,230,200,0.3);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .lineup-empty .empty-icon { font-size: 28px; margin-bottom: 10px; }
+
+  .lineup-days { padding: 16px 22px; }
+
+  .lineup-day-group { margin-bottom: 20px; }
+  .lineup-day-group:last-child { margin-bottom: 0; }
+
+  .lineup-day-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .lineup-day-label.fri { color: var(--gold); }
+  .lineup-day-label.sat { color: var(--sky); }
+  .lineup-day-label.sun { color: var(--rust); }
+
+  .lineup-artist {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 13px;
+    color: var(--sand);
+    border-bottom: 1px solid rgba(245,230,200,0.06);
+    cursor: pointer;
+  }
+
+  .lineup-artist:hover .remove-x { opacity: 1; }
+
+  .remove-x {
+    color: rgba(245,230,200,0.3);
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    padding: 0 4px;
+  }
+
+  .clear-all-btn {
+    display: block;
+    width: calc(100% - 44px);
+    margin: 0 22px 18px;
+    padding: 9px;
+    background: transparent;
+    border: 1px solid rgba(245,230,200,0.15);
+    border-radius: 6px;
+    color: rgba(245,230,200,0.4);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+
+  .clear-all-btn:hover {
+    border-color: rgba(245,230,200,0.3);
+    color: rgba(245,230,200,0.7);
+  }
+
+  .hidden { display: none !important; }
+
+  .mountains {
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(180deg, transparent 0%, rgba(10,20,20,0.5) 100%);
+    margin-top: -20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .filter-btn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(245,230,200,0.15);
+    background: transparent;
+    color: rgba(245,230,200,0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: rgba(245,230,200,0.1);
+    border-color: rgba(245,230,200,0.35);
+    color: var(--sand);
+  }
+
+  .filter-btn.fri-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(232,184,75,0.1); }
+  .filter-btn.sat-btn.active { border-color: var(--sky); color: var(--sky); background: rgba(42,157,143,0.1); }
+  .filter-btn.sun-btn.active { border-color: var(--rust); color: var(--rust); background: rgba(201,79,42,0.1); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Goldenvoice Presents in Indio</div>
+  <div class="logo">Coachella <span>2025</span></div>
+  <div class="tagline">Coachella Valley Music and Arts Festival · Empire Polo Club</div>
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">All Days</button>
+    <button class="filter-btn fri-btn" data-filter="fri">Friday</button>
+    <button class="filter-btn sat-btn" data-filter="sat">Saturday</button>
+    <button class="filter-btn sun-btn" data-filter="sun">Sunday</button>
+  </div>
+  <div class="search-bar">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="searchInput" placeholder="Search artists…">
+  </div>
+</header>
+
+<div class="container">
+  <div class="lineup-main" id="lineupMain">
+
+    <!-- FRIDAY -->
+    <div class="day-section fri" id="section-fri">
+      <div class="day-header">
+        <div class="day-pill">Friday</div>
+        <div class="day-headliner">Sabrina Carpenter</div>
+        <div class="day-date">Apr 10 &amp; 17</div>
+      </div>
+      <div class="artist-grid" id="grid-fri"></div>
+    </div>
+
+    <!-- SATURDAY -->
+    <div class="day-section sat" id="section-sat">
+      <div class="day-header">
+        <div class="day-pill">Saturday</div>
+        <div class="day-headliner">Justin Bieber</div>
+        <div class="day-date">Apr 11 &amp; 18</div>
+      </div>
+      <div class="artist-grid" id="grid-sat"></div>
+    </div>
+
+    <!-- SUNDAY -->
+    <div class="day-section sun" id="section-sun">
+      <div class="day-header">
+        <div class="day-pill">Sunday</div>
+        <div class="day-headliner">Karol G</div>
+        <div class="day-date">Apr 12 &amp; 19</div>
+      </div>
+      <div class="artist-grid" id="grid-sun"></div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="my-lineup">
+    <div class="lineup-header">
+      <div class="lineup-title">My Lineup</div>
+      <div class="lineup-count" id="lineupCount">0</div>
+    </div>
+    <div id="lineupEmpty" class="lineup-empty">
+      <div class="empty-icon">🎵</div>
+      Tap artists to add them<br>to your personal lineup
+    </div>
+    <div id="lineupContent" class="hidden">
+      <div class="lineup-days" id="lineupDays"></div>
+      <button class="clear-all-btn" id="clearAll">Clear All</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const artists = {
+  fri: [
+    "Sabrina Carpenter", "The XX", "Nine Inch Noize", "Disclosure", "Turnstile",
+    "Ethel Cain", "Dijon", "Teddy Swims", "KATSEYE", "Devo", "Sexyy Red",
+    "Central Cee", "Foster the People", "Levity", "Blood Orange", "Moby",
+    "Marlon Hoffstadt", "Lykke Li", "fakemink", "Gordo", "Creepy Nuts",
+    "Joyce Manor", "BINI", "Kettama", "Groove Armada", "Joost", "HUGEL",
+    "CMAT", "Slayyyter", "Prospa", "Hot Mulligan", "Hamdi", "Fleshwater",
+    "Max Styler", "Wednesday", "Dabeull", "The Two Lips", "Ninajirachi",
+    "Max Dean x Luke Dean", "Cachirula & Loojan", "Jessica Brankka",
+    "Chloé Caillet x Rossi.", "Arodes", "NewDad", "Carolina Durante",
+    "flowerovlove", "Febuary", "Bob Baker Marionettes", "Youna", "Sahar Z"
+  ],
+  sat: [
+    "Justin Bieber", "The Strokes", "GIVĒON", "Addison Rae", "Labrinth",
+    "SOMBR", "David Byrne", "Interpol", "Alex G", "Solomun", "Swae Lee",
+    "Taemin", "PinkPantheress", "Royel Otis", "REZZ", "Fujii Kaze",
+    "Adriatique", "Davido", "Boys Noize", "Geese", "rusowsky",
+    "¥ØU$UK€ ¥UK1MAT$U", "Green Velvet x AYYBO", "Luísa Sonza", "ZULAN",
+    "Los Hermanos Flores", "Bedouin", "Ceremony", "54 Ultra", "Noga Erez",
+    "Ben Sterling", "Blondshell", "Lambrini Girls", "Ecca Vandal",
+    "Mind Enterprises", "Freak Slug", "SOSA", "Mahmut Orhan", "Riordan",
+    "Die Spitz", "WHATMORE", "GENESI", "Yamagucci"
+  ],
+  sun: [
+    "Karol G", "Young Thug", "Kaskade", "BIGBANG", "Laufey", "Major Lazer",
+    "Iggy Pop", "FKA twigs", "Wet Leg", "Clipse", "Subtronics", "Little Simz",
+    "Mochakk", "Duke Dumont", "Worship", "Armin van Buuren x Adam Beyer",
+    "Holly Humberstone", "Gigi Perez", "The Rapture", "Suicidal Tendencies",
+    "BUNT.", "French Police", "Black Flag", "Oklou", "Röyksopp", "The Chats",
+    "DRAIN", "Model/Actriz", "COBRAH", "Los Retros", "WhoMadeWho",
+    "Jane Remover", "RØZ", "Glitterer", "Carlita x Josh Baker", "MĒSTIZA",
+    "&friends", "AZZECCA", "LE YORA", "Samia", "Tomora",
+    "Anyma presents Æden", "Radiohead Kid A Mnesia"
+  ]
+};
+
+const headliners = {
+  fri: "Sabrina Carpenter",
+  sat: "Justin Bieber",
+  sun: "Karol G"
+};
+
+const dayLabels = {
+  fri: "Friday Apr 10 & 17",
+  sat: "Saturday Apr 11 & 18",
+  sun: "Sunday Apr 12 & 19"
+};
+
+let selected = new Set();
+let activeFilter = 'all';
+let searchQuery = '';
+
+function buildGrids() {
+  ['fri','sat','sun'].forEach(day => {
+    const grid = document.getElementById('grid-' + day);
+    grid.innerHTML = '';
+    artists[day].forEach(name => {
+      const chip = document.createElement('div');
+      chip.className = 'artist-chip' + (name === headliners[day] ? ' headliner-chip' : '');
+      chip.dataset.artist = name;
+      chip.dataset.day = day;
+      chip.innerHTML = `<span class="check-dot"></span>${name}`;
+      chip.addEventListener('click', () => toggleArtist(name, day, chip));
+      grid.appendChild(chip);
+    });
+  });
+}
+
+function toggleArtist(name, day, chip) {
+  const key = day + '::' + name;
+  if (selected.has(key)) {
+    selected.delete(key);
+    chip.classList.remove('selected');
+  } else {
+    selected.add(key);
+    chip.classList.add('selected');
+  }
+  updateSidebar();
+}
+
+function updateSidebar() {
+  const count = selected.size;
+  document.getElementById('lineupCount').textContent = count;
+
+  if (count === 0) {
+    document.getElementById('lineupEmpty').classList.remove('hidden');
+    document.getElementById('lineupContent').classList.add('hidden');
+    return;
+  }
+
+  document.getElementById('lineupEmpty').classList.add('hidden');
+  document.getElementById('lineupContent').classList.remove('hidden');
+
+  const byDay = { fri: [], sat: [], sun: [] };
+  selected.forEach(key => {
+    const [day, name] = key.split('::');
+    byDay[day].push(name);
+  });
+
+  const container = document.getElementById('lineupDays');
+  container.innerHTML = '';
+
+  ['fri','sat','sun'].forEach(day => {
+    if (byDay[day].length === 0) return;
+    const group = document.createElement('div');
+    group.className = 'lineup-day-group';
+    const label = document.createElement('div');
+    label.className = 'lineup-day-label ' + day;
+    label.textContent = dayLabels[day];
+    group.appendChild(label);
+    byDay[day].forEach(name => {
+      const row = document.createElement('div');
+      row.className = 'lineup-artist';
+      row.innerHTML = `<span>${name}</span><span class="remove-x">✕</span>`;
+      row.addEventListener('click', () => {
+        const key = day + '::' + name;
+        selected.delete(key);
+        // also deselect chip
+        const chip = document.querySelector(`.artist-chip[data-artist="${CSS.escape(name)}"][data-day="${day}"]`);
+        if (chip) chip.classList.remove('selected');
+        updateSidebar();
+      });
+      group.appendChild(row);
+    });
+    container.appendChild(group);
+  });
+}
+
+function applyFiltersAndSearch() {
+  ['fri','sat','sun'].forEach(day => {
+    const section = document.getElementById('section-' + day);
+    if (activeFilter !== 'all' && activeFilter !== day) {
+      section.classList.add('hidden');
+      return;
+    }
+    section.classList.remove('hidden');
+    const chips = section.querySelectorAll('.artist-chip');
+    chips.forEach(chip => {
+      const name = chip.dataset.artist.toLowerCase();
+      const matches = !searchQuery || name.includes(searchQuery);
+      chip.classList.toggle('hidden', !matches);
+    });
+  });
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    applyFiltersAndSearch();
+  });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  applyFiltersAndSearch();
+});
+
+// Clear all
+document.getElementById('clearAll').addEventListener('click', () => {
+  selected.clear();
+  document.querySelectorAll('.artist-chip.selected').forEach(c => c.classList.remove('selected'));
+  updateSidebar();
+});
+
+buildGrids();
+updateSidebar();
+</script>
+</body>
+</html>
